@@ -8,7 +8,7 @@ const RegistrationForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(name, selectedSectors, agreedToTerms);
+        console.log(name, selectedSector, agreedToTerms);
     };
 
     return (

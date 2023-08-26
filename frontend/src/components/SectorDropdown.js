@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function SectorDropdown() {
+function SectorDropdown({ selectedSector, onSectorChange }) {
     const [sectors, setSectors] = useState([]);
 
     useEffect(() => {
@@ -18,11 +18,15 @@ function SectorDropdown() {
         <select value={selectedSector} onChange={e => onSectorChange(e.target.value)}>
             {sectors.map(sector => (
                 <option key={sector.id} value={sector.id}>
-                    {sector.name}
+                    {getIndentation(sector.depthLevel)}{sector.name}
                 </option>
             ))}
         </select>
     );
+}
+
+function getIndentation(level) {
+    return '\u00A0'.repeat(level * 4); // 4 spaces for each level
 }
 
 export default SectorDropdown;
