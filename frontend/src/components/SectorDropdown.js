@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import TreeSelect, { SHOW_PARENT } from 'rc-tree-select';
 
-function SectorDropdown({ selectedSector, onSectorChange }) {
-    const [sectors, setSectors] = useState([]);
+import 'rc-tree-select/assets/index.less';
+
+function SectorDropdown({ selectedSectors, onSectorsChange }) {
+    const [treeData, setTreeData] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8080/sectors')
             .then(response => {
-                setSectors(response.data);
+                const sectors = response.data;
+                const treeData = getTreeData(sectors);
+                setTreeData(treeData);
             })
             .catch(error => {
                 console.error("There was an error fetching sectors:", error);
@@ -15,18 +20,46 @@ function SectorDropdown({ selectedSector, onSectorChange }) {
     }, []);
 
     return (
-        <select value={selectedSector} onChange={e => onSectorChange(e.target.value)}>
-            {sectors.map(sector => (
-                <option key={sector.id} value={sector.id}>
-                    {getIndentation(sector.depthLevel)}{sector.name}
-                </option>
-            ))}
-        </select>
+        <TreeSelect
+            treeData={treeData}
+            value={selectedSectors}
+            onChange={onSectorsChange}
+            treeCheckable={true}
+            showCheckedStrategy={SHOW_PARENT}
+            searchPlaceholder="Please select"
+            style={{ width: 300 }}
+        />
     );
 }
 
-function getIndentation(level) {
-    return '\u00A0'.repeat(level * 4); // 4 spaces for each level
+function getTreeData(sectors) {
+    const treeData = [];
+
+    // Function to recursively build treeData for a given parent
+    const buildTreeData = (parent) => {
+        const children = sectors.filter(sector => sector.parent && sector.parent.id === parent.id);
+        if (children.length === 0) {
+            return {
+                value: parent.id.toString(),
+                label: parent.name,
+            };
+        }
+        const childrenTreeData = children.map(buildTreeData);
+        return {
+            value: parent.id.toString(),
+            label: parent.name,
+            children: childrenTreeData,
+        };
+    };
+
+    // Build treeData for all root level sectors
+    const rootSectors = sectors.filter(sector => !sector.parent);
+    rootSectors.forEach(rootSector => {
+        treeData.push(buildTreeData(rootSector));
+    });
+
+    return treeData;
 }
+
 
 export default SectorDropdown;

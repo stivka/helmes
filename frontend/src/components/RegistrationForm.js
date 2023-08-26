@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import SectorDropdown from './SectorDropdown';
 
 const RegistrationForm = () => {
@@ -8,7 +9,17 @@ const RegistrationForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(name, selectedSector, agreedToTerms);
+        if (!name || !selectedSector || !agreedToTerms) {
+            alert("All fields are mandatory!");
+            return;
+        }
+        axios.post('http://localhost:8080/users', { name, sectors: selectedSector, agreedToTerms })
+            .then(response => {
+                console.log('Data saved successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error saving data:', error);
+            });
     };
 
     return (
@@ -25,7 +36,7 @@ const RegistrationForm = () => {
             <br />
             <label>
                 <div>
-                    <h1>Select a Sector</h1>
+                    <h4>Select a Sector</h4>
                     <SectorDropdown selectedSector={selectedSector} onSectorChange={setSelectedSector} />
                 </div>
             </label>
