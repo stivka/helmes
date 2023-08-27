@@ -5,7 +5,7 @@
 
 -------------------------------------------------------
 
-Test assignment description
+Test assignment description with my interpretation as comments
 
 1. Correct all of the deficiencies in index.html
 
@@ -16,8 +16,18 @@ Test assignment description
 3. Perform the following activities after the "Save" button has been pressed: 
 3.1. Validate all input data (all fields are mandatory)
 3.2. Store all input data to the database (Name, Sectors, Agree to terms)
-3.3. Refill the form using stored data 
-3.4. Allow the user to edit his/her own data during the session
+
+3.3. Refill the form using stored data
+// confirmation to the user that the submitted data has been saved and is now used to populate the form.
+This step does not specify whether the form should be refilled immediately after submission or if the data 
+should be retrieved from the database and used to refill the form at a later time.
+
+3.4. Allow the user to edit his/her own data during the session 
+// after the user submits the form and the data is saved to the database, 
+the user can edit the data in the form and submit it again to update the 
+data in the database.
+This step doesn't explicitly state that user login should be implemented nor that
+the session should be available from other browser tabs.
 
 Write us Your best code! 
 

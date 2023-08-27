@@ -10,7 +10,7 @@ import stivka.net.helmes.model.Sector;
 import stivka.net.helmes.service.SectorService;
 
 @RestController
-@RequestMapping("/sectors")
+@RequestMapping("/api/sectors")
 public class SectorController {
 
     private SectorService sectorService;

@@ -4,11 +4,11 @@ import TreeSelect, { SHOW_PARENT } from 'rc-tree-select';
 
 import 'rc-tree-select/assets/index.less';
 
-function SectorDropdown({ selectedSectors, onSectorsChange }) {
+function SectorDropdown({ selectedSectors, onSectorsChange, editable }) {
     const [treeData, setTreeData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/sectors')
+        axios.get('http://localhost:8080/api/sectors')
             .then(response => {
                 const sectors = response.data;
                 const treeData = getTreeData(sectors);
@@ -28,6 +28,7 @@ function SectorDropdown({ selectedSectors, onSectorsChange }) {
             showCheckedStrategy={SHOW_PARENT}
             searchPlaceholder="Please select"
             style={{ width: 300 }}
+            disabled={!editable}
         />
     );
 }
