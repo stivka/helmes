@@ -45,7 +45,7 @@ const RegistrationForm = () => {
                     <legend className="legend">Please enter your name and pick the sectors that you are currently involved in</legend>
                     <div className="form-group">
                         <label htmlFor="name" className="label">Name:</label>
-                        <input type="text" id="name" className="input" value={name} onChange={e => setName(e.target.value)} disabled={isSubmitted} />
+                        <input type="text" id="name" className="input-text" value={name} onChange={e => setName(e.target.value)} disabled={isSubmitted} required pattern="[A-Za-z ]+" title="Only letters and spaces are allowed" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="sector" className="label">Select a sector:</label>

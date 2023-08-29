@@ -2,6 +2,8 @@
 body, html {
   margin: 0;
   padding: 0;
+  font-family: monospace;
+  font-size: 24px;
 }
 
 /* Container Styles */
@@ -16,9 +18,10 @@ body, html {
 /* Form Styles */
 .form {
   background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 2em;
+  border-radius: 1em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 20em;
 }
 
 .fieldset {
@@ -29,34 +32,50 @@ body, html {
 
 .legend {
   width: auto;
+  max-width: 100%;
   padding: 0 10px;
+  text-align:center;
+  font-size: 0.63em;
   border: none;
+  white-space: normal;
+}
+
+/* Input and Label Styles */
+.input-text {
+  width: 100%;
+  padding: 0.1em;
+}
+
+.label,
+.checkbox-label,
+.input[type="text"],
+.input[type="submit"],
+.button {
+  font-size: 0.7em;
+}
+
+.label,
+.checkbox-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .form-group {
   margin-bottom: 15px;
 }
 
-.label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
+/* Checkbox Styles */
 .checkbox-group {
   display: flex;
   align-items: center;
 }
 
-.checkbox-label {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: bold;
-  margin-left: 10px;
+.input[type="checkbox"] {
+  margin-right: 10px;
 }
 
-/* Input Styles */
-.input[type="text"],
+/* Button Styles */
 .input[type="submit"],
 .button {
   width: 100%;
@@ -64,10 +83,6 @@ body, html {
   border-radius: 5px;
   border: 1px solid #ddd;
   margin-top: 5px;
-}
-
-.input[type="submit"],
-.button {
   background-color: #5cb85c;
   color: #fff;
   border: none;
@@ -76,8 +91,4 @@ body, html {
 .input[type="submit"]:hover,
 .button:hover {
   background-color: #4cae4c;
-}
-
-.input[type="checkbox"] {
-  margin-right: 10px;
 }
