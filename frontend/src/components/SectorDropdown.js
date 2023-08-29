@@ -27,7 +27,8 @@ function SectorDropdown({ selectedSectors, onSectorsChange, editable }) {
             showCheckedStrategy={SHOW_PARENT}
             searchPlaceholder="Please select"
             // doesn't support all styles thru the prop, like rounded edges or font-size
-            style={{ width: '100%' }}
+            style={{ width: '100%'}}
+            dropdownStyle={{ width: '22em' }}
             disabled={!editable}
         />
     );
