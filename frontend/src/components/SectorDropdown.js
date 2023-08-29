@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TreeSelect, { SHOW_PARENT } from 'rc-tree-select';
-
 import 'rc-tree-select/assets/index.less';
 
 function SectorDropdown({ selectedSectors, onSectorsChange, editable }) {
@@ -27,7 +26,8 @@ function SectorDropdown({ selectedSectors, onSectorsChange, editable }) {
             treeCheckable={true}
             showCheckedStrategy={SHOW_PARENT}
             searchPlaceholder="Please select"
-            style={{ width: 300 }}
+            // doesn't support all styles thru the prop
+            style={{ width: 500 }}
             disabled={!editable}
         />
     );
@@ -61,6 +61,5 @@ function getTreeData(sectors) {
 
     return treeData;
 }
-
 
 export default SectorDropdown;
