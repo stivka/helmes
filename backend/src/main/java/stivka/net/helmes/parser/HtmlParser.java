@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 
 import stivka.net.helmes.model.Sector;
 
-
-
 @Component
 public class HtmlParser {
 
@@ -64,6 +62,7 @@ public class HtmlParser {
                 return sectors.get(i);
             }
         }
+
         return null;
     }
 
@@ -76,7 +75,7 @@ public class HtmlParser {
             count++;
             index += target.length(); // Move to the end of the found target to continue searching
         }
-
+        
         return count / 4;
     }
 }

@@ -4,19 +4,28 @@ import SectorDropdown from './SectorDropdown';
 
 const RegistrationForm = () => {
     const [name, setName] = useState('');
-    const [selectedSectors, setSelectedSectors] = useState('');
-    const [agreedToTerms, setAgreedToTerms] = useState(false);
+    const [selectedSectors, setSelectedSectors] = useState([]);
+    const [agreeToTerms, setAgreeToTerms] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [formUuid, setFormUuid] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!name || !selectedSectors || !agreedToTerms) {
+        if (!name || selectedSectors.length === 0 || !agreeToTerms) {
             alert("All fields are mandatory!");
             return;
         }
-        axios.post('http://localhost:8080/api/registration', { name, sectors: selectedSectors, agreedToTerms }, { withCredentials: true })
+        axios.post('http://localhost:8080/api/registration', {
+            name,
+            sectors: selectedSectors,
+            agreeToTerms,
+            uuid: formUuid ? formUuid : undefined
+        }, {
+            withCredentials: true
+        })
             .then(response => {
                 console.log('Data saved successfully:', response.data);
+                setFormUuid(response.data);
                 setIsSubmitted(true);
             })
             .catch(error => {
@@ -43,13 +52,13 @@ const RegistrationForm = () => {
             <label>
                 <div>
                     <h4>Select a Sector</h4>
-                    <SectorDropdown selectedSectors={selectedSectors} onSectorsChange={setSelectedSectors} disabled={isSubmitted} />
+                    <SectorDropdown selectedSectors={selectedSectors} onSectorsChange={setSelectedSectors} editable={!isSubmitted} />
                 </div>
             </label>
             <br />
             <br />
             <label>
-                <input type="checkbox" checked={agreedToTerms} onChange={() => setAgreedToTerms(!agreedToTerms)} disabled={isSubmitted} />
+                <input type="checkbox" checked={agreeToTerms} onChange={() => setAgreeToTerms(!agreeToTerms)} disabled={isSubmitted} />
                 Agree to terms
             </label>
             <br />
