@@ -1,11 +1,11 @@
 # Sector Submission
 
-A web application that allows a user to submit their name and pick amongst different sectors that they may be currently involved in.
+A web application where users can submit their name along with the sectors they are currently engaged in.
 This is the test assignment given by Helmes for their software developer roles.
 
 ## Installation
 
-1 . Clone the monorepo.
+1 . Clone the monorepo.<br>
 2 . Execute the script from the root directory to download the necessary libraries, build the artifacts, and launch the application suite:
 ```sh
 ./start.sh
@@ -38,7 +38,7 @@ Password: (leave this field empty)
 3.2. Store all input data to the database (Name, Sectors, Agree to terms)<br>
 3.3. Refill the form using stored data<br>
 3.4. Allow the user to edit his/her own data during the session<br>
-*Comment:* After the user submits the form and the data is saved to the database, the user can edit the data in the form and submit it again to update the data in the database. This step doesn't explicitly state that user login should be implemented nor that the session should be available from other browser tabs.
+*Comment:* Once the user has submitted the form and the data is stored in the database, they can modify the form data and resubmit it to update the database. This step does not specify the need for user login implementation nor the availability of the session across different browser tabs. The current implementation permits separate sessions in different browser tabs.
 
 Write us Your best code! 
 
