@@ -6,7 +6,8 @@ This is the test assignment given by Helmes for their software developer roles.
 ## Installation
 
 1 . Clone the monorepo.<br>
-2 . Execute the script from the root directory to download the necessary libraries, build artifacts, run tests and launch the application suite:
+2 . Install Java 17 and Node.js if not installed <br>
+3 . Execute the script from the root directory to download the necessary libraries, build artifacts, run tests and launch the application suite:
 ```sh
 ./start.sh
 ```
