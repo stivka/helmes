@@ -2,6 +2,10 @@
 
 cd backend
 
+# Download dependencies
+./gradlew dependencies
+
+# Run tests
 ./gradlew test
 
 # Uncomment this to have failing tests cancel application launch
@@ -10,12 +14,11 @@ cd backend
 #   exit 1
 # fi
 
-# create a concurrent instance of Spring
+# Start Spring application
 ./gradlew bootRun &
 
 cd ../frontend
 
+# Download dependencies and start React application
 npm install
-
-# create a concurrent instance of React
 npm start &
