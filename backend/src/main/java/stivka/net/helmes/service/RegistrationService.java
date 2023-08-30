@@ -1,10 +1,13 @@
 package stivka.net.helmes.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import jakarta.persistence.EntityNotFoundException;
 import stivka.net.helmes.model.RegistrationForm;
 import stivka.net.helmes.repository.RegistrationRepository;
 
@@ -15,6 +18,15 @@ public class RegistrationService {
 
     public RegistrationService(RegistrationRepository registrationRepository) {
         this.registrationRepository = registrationRepository;
+    }
+
+    public List<RegistrationForm> getAllRegistrationForms() {
+        return registrationRepository.findAll();
+    }
+
+    public RegistrationForm getRegistrationFormByName(String name) {
+        return registrationRepository.findByName(name)
+                .orElseThrow(() -> new EntityNotFoundException("RegistrationForm with name " + name + " not found"));
     }
 
     @Transactional

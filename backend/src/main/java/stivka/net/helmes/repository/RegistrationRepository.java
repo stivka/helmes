@@ -9,4 +9,7 @@ import stivka.net.helmes.model.RegistrationForm;
 public interface RegistrationRepository extends JpaRepository<RegistrationForm, Integer> {
 
     Optional<RegistrationForm> findByUuid(String uuid);
+
+    Optional<RegistrationForm> findByName(String name);
+
 }
