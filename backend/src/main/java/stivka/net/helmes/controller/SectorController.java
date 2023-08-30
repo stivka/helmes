@@ -3,6 +3,7 @@ package stivka.net.helmes.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +23,10 @@ public class SectorController {
     @GetMapping
     public List<Sector> getAllSectors() {
         return sectorService.getAllSectors();
+    }
+
+    @GetMapping("/{htmlId}")
+    public Sector getSector(@PathVariable int htmlId) {
+        return sectorService.getSector(htmlId);
     }
 }

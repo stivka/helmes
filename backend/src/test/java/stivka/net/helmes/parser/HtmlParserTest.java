@@ -41,7 +41,6 @@ public class HtmlParserTest {
 
     @Test
     public void testFileReadingAndParsing() {
-        List<Sector> sectors = htmlParser.parseHtml(HTML_PATH);
         assertNotNull(sectors);
         assertFalse(sectors.isEmpty());
     }

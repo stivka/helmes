@@ -1,5 +1,6 @@
 package stivka.net.helmes.service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -23,19 +24,22 @@ public class RegistrationService {
             registrationForm.setUuid(UUID.randomUUID().toString());
             return registrationRepository.save(registrationForm);
         } else {
-            RegistrationForm existingForm = registrationRepository.findByUuid(uuid);
-            if (existingForm != null) {
+            Optional<RegistrationForm> existingFormOpt = registrationRepository.findByUuid(uuid);
+            if (existingFormOpt.isPresent()) {
+                RegistrationForm existingForm = existingFormOpt.get();
                 existingForm.setName(registrationForm.getName());
                 existingForm.setSectors(registrationForm.getSectors());
                 existingForm.setAgreeToTerms(registrationForm.isAgreeToTerms());
                 return registrationRepository.save(existingForm);
             } else {
+                registrationForm.setUuid(UUID.randomUUID().toString());
                 return registrationRepository.save(registrationForm);
             }
         }
     }
 
     public RegistrationForm findByUuid(String uuid) {
-        return registrationRepository.findByUuid(uuid);
+        Optional<RegistrationForm> registrationFormOpt = registrationRepository.findByUuid(uuid);
+        return registrationFormOpt.orElse(null);
     }
 }
